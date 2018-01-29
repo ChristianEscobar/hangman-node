@@ -2,6 +2,7 @@ const Letter = require("./Letter");
 
 function Word(word) {
 	this.word = [];
+	this.lettersGuessed = [];
 	this.displayWord = function() {
 		let wordProgress = "";
 
@@ -15,6 +16,10 @@ function Word(word) {
 		this.word.map((ltr) => {
 			ltr.guess(userGuess);
 		});
+	};
+
+	this.letterHasBeenUsed = function(userGuess) {
+		return this.lettersGuessed.includes(userGuess);
 	};
 
 	// Store an init function in the prototype that will be used

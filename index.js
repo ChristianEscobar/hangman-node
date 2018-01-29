@@ -37,6 +37,7 @@ const maxGuessesAllowed = 10;
 
 function playGame(totalGuesses, theWord) {
 	theWord.displayWord();
+	console.log("Current guesses: ", theWord.lettersGuessed);
 
 	if(totalGuesses < maxGuessesAllowed) {
 		inquirer.prompt([
@@ -49,7 +50,11 @@ function playGame(totalGuesses, theWord) {
 						var pass = input.match(/^[a-zA-Z]/i);
 
 						if(pass) {
-							return true;
+							if(theWord.letterHasBeenUsed(input) === false) {
+								return true;
+							} else {
+								return "That letter has already been used.  Try another one.";
+							}
 						}
 
 						return "Invalid character entered, only letters are valid.";
@@ -61,7 +66,10 @@ function playGame(totalGuesses, theWord) {
 
 			theWord.takeGuess(answers.userInput);
 
-			console.log("Guess #" + totalGuesses, answers.userInput);
+			// Store this guess
+			theWord.lettersGuessed.push(answers.userInput);
+
+			console.log("Guess #", totalGuesses, answers.userInput);
 			console.log("Number of Guesses Remaining: ", maxGuessesAllowed - totalGuesses);
 
 			// Recursive call
@@ -75,6 +83,7 @@ function playGame(totalGuesses, theWord) {
 function selectRandomCharacterName() {
 	return characterNames[Math.floor(Math.random() * characterNames.length)];
 }
+
 
 //====================================//
 // Test function section
