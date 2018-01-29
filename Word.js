@@ -17,23 +17,25 @@ function Word(word) {
 		});
 	};
 
-	// Initialize the word array
-	// function init() {
-	// 	const charsInWord = word.split("");
-
-	// 	charsInWord.map((char) => {
-	// 		this.word.push(new Letter(char));
-	// 	});
-	// }
-
+	// Store an init function in the prototype that will be used
+	// to populate the word array with Letter objects
 	Word.prototype.init = function() {
 		const charsInWord = word.split("");
 
 		charsInWord.map((char) => {
-			this.word.push(new Letter(char));
+			// Handles spaces in word by adding an empty letter and setting 
+			// that letter objects guessed value to true.
+			if(char !== " ") {
+				this.word.push(new Letter(char));
+			} else {
+				let thisIsAspace = new Letter(char);
+				thisIsAspace.hasBeenGuessed = true;
+				this.word.push(thisIsAspace);
+			}
 		});
 	}
 
+	// Call the init function
 	this.init();
 }
 

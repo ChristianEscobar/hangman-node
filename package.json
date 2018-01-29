@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/xtiane/hangman-node/issues"
   },
-  "homepage": "https://github.com/xtiane/hangman-node#readme"
+  "homepage": "https://github.com/xtiane/hangman-node#readme",
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "inquirer": "^5.0.1"
+  }
 }

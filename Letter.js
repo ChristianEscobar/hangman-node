@@ -9,10 +9,14 @@ function Letter(letter) {
 		}
 	};
 	this.guess = function(userGuess) {
-		if(userGuess === this.letter) {
-			this.hasBeenGuessed = true;
+		if(this.letter.hasBeenGuessed === true) {
+			return;
 		} else {
-			this.hasBeenGuessed = false;
+			if(this.letter.toLowerCase() === userGuess.toLowerCase()) {
+				this.hasBeenGuessed = true;
+			} else {
+				this.hasBeenGuessed = false;
+			}
 		}
 	};
 }
