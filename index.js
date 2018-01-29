@@ -37,7 +37,6 @@ const maxGuessesAllowed = 10;
 
 function playGame(totalGuesses, theWord) {
 	theWord.displayWord();
-	testPrintWord(theWord);
 
 	if(totalGuesses < maxGuessesAllowed) {
 		inquirer.prompt([
@@ -46,6 +45,15 @@ function playGame(totalGuesses, theWord) {
 					type: "input",
 					name: "userInput",
 					message: "Guess a letter: ",
+					validate: function(input) {
+						var pass = input.match(/^[a-zA-Z]/i);
+
+						if(pass) {
+							return true;
+						}
+
+						return "Invalid character entered, only letters are valid.";
+					}
 				}
 			])
 		.then((answers) => {
