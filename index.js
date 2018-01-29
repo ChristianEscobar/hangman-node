@@ -16,11 +16,11 @@ const characterNames = ['Mario',
 			'Jill Valentine',
 			'Marcus Fenix',
 			'Cloud Strife',
-			'Princes Zelda',
+			'Princess Zelda',
 			'Niko Bellic',
 			'Yoshi',
 			'Ganon',
-			'Sub-Zero',
+			'Sub Zero',
 			'Ryu Hayabusa',
 			'Fox McCloud'];
 
@@ -30,9 +30,7 @@ const maxGuessesAllowed = 10;
 // IIFE function
 (function () {
 	// Randomly select a word
-	const randomChoice = selectRandomCharacterName();
-
-	let currentWord = new word(randomChoice);
+	let currentWord = new word(selectRandomCharacterName());
 
 	playGame(0, currentWord);
 })();
@@ -71,7 +69,7 @@ function selectRandomCharacterName() {
 }
 
 //====================================//
-// Test functions section
+// Test function section
 //====================================//
 function testWordGeneration() {
 	const randomWord = selectRandomCharacterName();
@@ -84,7 +82,7 @@ function testWordGeneration() {
 }
 
 function testPrintWord(printThisWord) {
-	printThisWord.word.map((letter) => {
-		console.log(letter.letter, ' ==> ', letter.hasBeenGuessed);
+	printThisWord.word.map((ltr) => {
+		console.log(ltr.letter, ' ==> ', ltr.hasBeenGuessed);
 	});
 }

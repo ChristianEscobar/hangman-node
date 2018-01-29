@@ -5,15 +5,15 @@ function Word(word) {
 	this.displayWord = function() {
 		let wordProgress = "";
 
-		this.word.map((letter) => {
-			wordProgress += (letter.toString() + " ");
+		this.word.map((ltr) => {
+			wordProgress += (ltr.toString() + " ");
 		});
 
 		console.log(wordProgress);
 	};
 	this.takeGuess = function(userGuess) {
-		this.word.map((letter) => {
-			letter.guess(userGuess);
+		this.word.map((ltr) => {
+			ltr.guess(userGuess);
 		});
 	};
 
