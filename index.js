@@ -37,15 +37,16 @@ const maxGuessesAllowed = 10;
 
 function playGame(totalGuesses, theWord) {
 	theWord.displayWord();
-	console.log("Current guesses: ", theWord.lettersGuessed);
 
 	if(totalGuesses < maxGuessesAllowed) {
+		displayHUD(totalGuesses, theWord);
+
 		inquirer.prompt([
 				// User prompts go here
 				{
 					type: "input",
 					name: "userInput",
-					message: "Guess a letter: ",
+					message: "What's your guess?",
 					validate: function(input) {
 						var pass = input.match(/^[a-zA-Z]/i);
 
@@ -69,9 +70,6 @@ function playGame(totalGuesses, theWord) {
 			// Store this guess
 			theWord.lettersGuessed.push(answers.userInput);
 
-			console.log("Guess #", totalGuesses, answers.userInput);
-			console.log("Number of Guesses Remaining: ", maxGuessesAllowed - totalGuesses);
-
 			// Recursive call
 			playGame(totalGuesses, theWord);
 		});
@@ -82,6 +80,12 @@ function playGame(totalGuesses, theWord) {
 
 function selectRandomCharacterName() {
 	return characterNames[Math.floor(Math.random() * characterNames.length)];
+}
+
+function displayHUD(totalGuesses, theWord) {
+	console.log("\nThis is guess #", totalGuesses + 1);
+	console.log("Current guesses: ", theWord.lettersGuessed);
+	console.log("Number of Guesses Remaining: ", maxGuessesAllowed - totalGuesses, "\n");
 }
 
 
