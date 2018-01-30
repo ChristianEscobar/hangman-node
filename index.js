@@ -22,7 +22,11 @@ const characterNames = ['Mario',
 			'Ganon',
 			'Sub Zero',
 			'Ryu Hayabusa',
-			'Fox McCloud'];
+			'Fox McCloud',
+			'Toad',
+			'Donkey Kong',
+			'Sonic The Hedgehog',
+			'Crash Bandicoot'];
 
 const maxGuessesAllowed = 10;
 
@@ -37,6 +41,12 @@ const maxGuessesAllowed = 10;
 
 function playGame(totalGuesses, theWord) {
 	theWord.displayWord();
+
+	if(theWord.hasWordBeenGuessed()) {
+		displayWinner();
+
+		return;
+	}
 
 	if(totalGuesses < maxGuessesAllowed) {
 		displayHUD(totalGuesses, theWord);
@@ -74,7 +84,7 @@ function playGame(totalGuesses, theWord) {
 			playGame(totalGuesses, theWord);
 		});
 	} else {
-		console.log("Game Over!");
+		displayLoser();
 	}
 }
 
@@ -86,6 +96,37 @@ function displayHUD(totalGuesses, theWord) {
 	console.log("\nThis is guess #", totalGuesses + 1);
 	console.log("Current guesses: ", theWord.lettersGuessed);
 	console.log("Number of Guesses Remaining: ", maxGuessesAllowed - totalGuesses, "\n");
+}
+
+function displayWinner() {
+	const messages = ["Winner Winner Chicken Dinner!",
+		"You Win!",
+		"Wow, that was amazing!",
+		"You Win!  You are awesome!",
+		"You Win!  Shuckey Duckey Quack Quack!",
+		"Wow, you know your stuff!"
+	];
+
+	let winningMessage = messages[Math.floor(Math.random() * messages.length)];
+
+	console.log(winningMessage);
+}
+
+function displayLoser() {
+	const messages = ["Sorry, better luck next time.  Game Over!",
+		"You need practice.  Game Over!",
+		"You aren't that good.  Game Over!",
+		"Sorry, try again next time.  Game Over!",
+		"Come back when you are ready.  Game Over!",
+		"You Lose.  Game Over!",
+		"You are all out of guesses.  Game Over!",
+		"Awww, so close.  Game Over!",
+		"HA HA, you're too slow.  Game Over!"
+	];
+
+	let losingMessage = messages[Math.floor(Math.random() * messages.length)];
+
+	console.log(losingMessage);
 }
 
 
