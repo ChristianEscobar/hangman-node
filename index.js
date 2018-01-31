@@ -49,7 +49,7 @@ function playGame(totalGuesses, theWord) {
 	theWord.displayWord();
 
 	if(theWord.hasWordBeenGuessed()) {
-		displayWinner();
+		displayWinOrLose(true);
 
 		return;
 	}
@@ -70,7 +70,7 @@ function playGame(totalGuesses, theWord) {
 							if(theWord.letterHasBeenUsed(input) === false) {
 								return true;
 							} else {
-								return "That letter has already been used.  Try another one.";
+								return "The letter '" + input + "' has already been used.  Try another one.";
 							}
 						}
 
@@ -90,7 +90,7 @@ function playGame(totalGuesses, theWord) {
 			playGame(totalGuesses, theWord);
 		});
 	} else {
-		displayLoser();
+		displayWinOrLose(false);
 	}
 }
 
@@ -106,37 +106,25 @@ function displayHUD(totalGuesses, theWord) {
 	console.log(chalk.whiteBright("Number of Guesses Remaining: "), chalk.yellowBright(maxGuessesAllowed - totalGuesses, "\n"));
 }
 
-// Displays a winning message
-function displayWinner() {
-	const messages = ["Winner Winner Chicken Dinner!",
-		"You Win!",
-		"Wow, that was amazing!  You Win!",
-		"You are awesome!  You Win!",
-		"Shuckey Duckey Quack Quack!  You Win!",
-		"Wow, you know your stuff!   You Win!"
-	];
+// Display win or lose
+function displayWinOrLose(isWinner) {
+	if(isWinner) {
+		figlet("You Win!", function(err, data) {
+	    	if(err) {
+	    		throw err;
+	    	}
 
-	let winningMessage = messages[Math.floor(Math.random() * messages.length)];
+	    	console.log(data);
+	   });
+	} else {
+		figlet("You Lose!", function(err, data) {
+	    	if(err) {
+	    		throw err;
+	    	}
 
-	console.log(chalk.magentaBright("\n", winningMessage));
-}
-
-// Displays a losing message
-function displayLoser() {
-	const messages = ["Sorry, better luck next time.  Game Over!",
-		"You need practice.  Game Over!",
-		"You aren't that good.  Game Over!",
-		"Sorry, try again next time.  Game Over!",
-		"Come back when you are ready.  Game Over!",
-		"You Lose.  Game Over!",
-		"You are all out of guesses.  Game Over!",
-		"Awww, so close.  Game Over!",
-		"HA HA, you are too slow.  Game Over!"
-	];
-
-	let losingMessage = messages[Math.floor(Math.random() * messages.length)];
-
-	console.log(chalk.redBright("\n", losingMessage));
+	    	console.log(data);
+	   });
+	}
 }
 
 function displayTitle(titleText) {
