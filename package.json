@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/xtiane/hangman-node#readme",
   "dependencies": {
+    "ascii-art": "^1.4.2",
     "chalk": "^2.3.0",
     "inquirer": "^5.0.1"
   }

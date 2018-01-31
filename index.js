@@ -1,5 +1,7 @@
 const word = require("./Word");
 const inquirer = require("inquirer");
+const chalk = require("chalk");
+const art = require("ascii-art");
 
 const characterNames = ['Mario',
 			'Lara Croft',
@@ -33,6 +35,8 @@ const maxGuessesAllowed = 10;
 // Start the game
 // IIFE function
 (function () {
+	testAsciiArt();
+
 	// Randomly select a word
 	let currentWord = new word(selectRandomCharacterName());
 
@@ -88,30 +92,34 @@ function playGame(totalGuesses, theWord) {
 	}
 }
 
+// Randomly selects a name from the array of names
 function selectRandomCharacterName() {
 	return characterNames[Math.floor(Math.random() * characterNames.length)];
 }
 
+// Displays information to the user
 function displayHUD(totalGuesses, theWord) {
-	console.log("\nThis is guess #", totalGuesses + 1);
-	console.log("Current guesses: ", theWord.lettersGuessed);
-	console.log("Number of Guesses Remaining: ", maxGuessesAllowed - totalGuesses, "\n");
+	console.log(chalk.whiteBright("\nThis is guess #"), chalk.yellowBright(totalGuesses + 1));
+	console.log(chalk.whiteBright("Current guesses: "), chalk.yellowBright(theWord.lettersGuessed));
+	console.log(chalk.whiteBright("Number of Guesses Remaining: "), chalk.yellowBright(maxGuessesAllowed - totalGuesses, "\n"));
 }
 
+// Displays a winning message
 function displayWinner() {
 	const messages = ["Winner Winner Chicken Dinner!",
 		"You Win!",
-		"Wow, that was amazing!",
-		"You Win!  You are awesome!",
-		"You Win!  Shuckey Duckey Quack Quack!",
-		"Wow, you know your stuff!"
+		"Wow, that was amazing!  You Win!",
+		"You are awesome!  You Win!",
+		"Shuckey Duckey Quack Quack!  You Win!",
+		"Wow, you know your stuff!   You Win!"
 	];
 
 	let winningMessage = messages[Math.floor(Math.random() * messages.length)];
 
-	console.log(winningMessage);
+	console.log(chalk.magentaBright("\n", winningMessage));
 }
 
+// Displays a losing message
 function displayLoser() {
 	const messages = ["Sorry, better luck next time.  Game Over!",
 		"You need practice.  Game Over!",
@@ -126,7 +134,7 @@ function displayLoser() {
 
 	let losingMessage = messages[Math.floor(Math.random() * messages.length)];
 
-	console.log(losingMessage);
+	console.log(chalk.redBright("\n", losingMessage));
 }
 
 
@@ -147,4 +155,15 @@ function testPrintWord(printThisWord) {
 	printThisWord.word.map((ltr) => {
 		console.log(ltr.letter, ' ==> ', ltr.hasBeenGuessed);
 	});
+}
+
+function testChalk() {
+	console.log(chalk.blue("Hello World!"));
+}
+
+function testAsciiArt() {
+	art.Figlet.fontPath = "Fonts";
+	art.font('my text', 'Doom', function(rendered){
+    //do stuff here
+});
 }

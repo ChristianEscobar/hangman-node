@@ -1,4 +1,5 @@
 const Letter = require("./Letter");
+const chalk = require("chalk");
 
 function Word(word) {
 	this.word = [];
@@ -11,7 +12,7 @@ function Word(word) {
 			wordProgress += (ltr.toString() + " ");
 		});
 
-		console.log(wordProgress);
+		console.log("\n\t", chalk.blueBright(wordProgress));
 	};
 	this.takeGuess = function(userGuess) {
 		// Processes a users guess
