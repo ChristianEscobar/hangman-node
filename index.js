@@ -67,7 +67,9 @@ function playGame(totalGuesses, theWord) {
 						var pass = input.match(/^[a-zA-Z]/i);
 
 						if(pass) {
-							if(theWord.letterHasBeenUsed(input) === false) {
+							if(input.length > 1) {
+								return "Only single letters are allowed.";
+							} else if(theWord.letterHasBeenUsed(input) === false) {
 								return true;
 							} else {
 								return "The letter '" + input + "' has already been used.  Try another one.";
