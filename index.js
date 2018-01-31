@@ -1,7 +1,7 @@
 const word = require("./Word");
 const inquirer = require("inquirer");
 const chalk = require("chalk");
-const art = require("ascii-art");
+const figlet = require("figlet");
 
 const characterNames = ['Mario',
 			'Lara Croft',
@@ -35,13 +35,15 @@ const maxGuessesAllowed = 10;
 // Start the game
 // IIFE function
 (function () {
-	testAsciiArt();
+	displayTitle();
+})();
 
+function initializeGame() {
 	// Randomly select a word
 	let currentWord = new word(selectRandomCharacterName());
 
 	playGame(0, currentWord);
-})();
+}
 
 function playGame(totalGuesses, theWord) {
 	theWord.displayWord();
@@ -129,12 +131,39 @@ function displayLoser() {
 		"You Lose.  Game Over!",
 		"You are all out of guesses.  Game Over!",
 		"Awww, so close.  Game Over!",
-		"HA HA, you're too slow.  Game Over!"
+		"HA HA, you are too slow.  Game Over!"
 	];
 
 	let losingMessage = messages[Math.floor(Math.random() * messages.length)];
 
 	console.log(chalk.redBright("\n", losingMessage));
+}
+
+function displayTitle(titleText) {
+	figlet("HANGMAN", function(err, data) {
+    if (err) {
+        throw err;
+    }
+    console.log(data);
+
+    figlet("Video Game", function(err, data) {
+    	if(err) {
+    		throw err;
+    	}
+
+    	console.log(data);
+
+    	figlet("Characters", function(err, data) {
+	    	if(err) {
+	    		throw err;
+	    	}
+
+	    	console.log(data);
+
+	    	initializeGame();
+	    });
+    });
+	});
 }
 
 
@@ -161,9 +190,13 @@ function testChalk() {
 	console.log(chalk.blue("Hello World!"));
 }
 
-function testAsciiArt() {
-	art.Figlet.fontPath = "Fonts";
-	art.font('my text', 'Doom', function(rendered){
-    //do stuff here
-});
+function testFiglet() {
+	figlet('Hello World!!', function(err, data) {
+    if (err) {
+        console.log('Something went wrong...');
+        console.dir(err);
+        return;
+    }
+    console.log(data)
+	});
 }
