@@ -11,3 +11,9 @@ Simple!  Run the steps below to setup the game and start playing:
 2. Save the code to a easy to remember location on your machine.  For example, ../my_node_apps/hangman-node
 3. Run npm install from the location in step 2 above
 4. Run node index to launch the game
+
+# Packages Used
+
+* [Inquirer](https://www.npmjs.com/package/inquirer)
+* [Chalk](https://www.npmjs.com/package/chalk)
+* [Figlet](https://www.npmjs.com/package/figlet)
