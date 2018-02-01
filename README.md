@@ -1,6 +1,7 @@
 # hangman-node
 
 A node.js terminal based Hangman game!
+The topic of the game is Video Game Characters.  You will have 10 tries to guess names of popular video game characters.
 
 # How Do I Play?
 
