@@ -125,6 +125,8 @@ function displayWinOrLose(isWinner) {
 	    	}
 
 	    	console.log(data);
+
+	    	playAgainPrompt();
 	   });
 	} else {
 		figlet("You Lose!", function(err, data) {
@@ -133,10 +135,13 @@ function displayWinOrLose(isWinner) {
 	    	}
 
 	    	console.log(data);
+
+	    	playAgainPrompt();
 	   });
 	}
 }
 
+// Display ascii art title
 function displayTitle(titleText) {
 	figlet("HANGMAN", function(err, data) {
     if (err) {
@@ -161,6 +166,26 @@ function displayTitle(titleText) {
 	    	initializeGame();
 	    });
     });
+	});
+}
+
+// Displays play again prompt
+function playAgainPrompt() {
+	inquirer.prompt([
+			// User prompts go here
+			{
+				type: "confirm",
+				name: "playAgain",
+				message: "Would you like to play again?",
+				default: "Yes"
+			}
+		])
+	.then((answers) => {
+		if(answers.playAgain) {
+			initializeGame();
+		} else {
+			console.log(chalk.greenBright("OK, maybe next time."));
+		}
 	});
 }
 
