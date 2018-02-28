@@ -1,5 +1,7 @@
 # hangman-node
 
+![start screen](images/github/screenshot.png)
+
 # Description
 
 A node.js terminal based Hangman game!
