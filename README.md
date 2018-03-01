@@ -2,12 +2,12 @@
 
 ![start screen](images/github/screenshot.png)
 
-# Description
+## Description
 
 A node.js terminal based Hangman game!
 The topic of the game is Video Game Characters.  You will have 10 tries to guess names of popular video game characters.
 
-# How Do I Play?
+## How Do I Play?
 
 Simple!  Run the steps below to setup the game and start playing:
 
@@ -16,7 +16,7 @@ Simple!  Run the steps below to setup the game and start playing:
 3. Run ```npm install``` from the location in step 2 above
 4. Run ```node index``` to launch the game
 
-# Packages Used
+## Packages Used
 
 * [Inquirer](https://www.npmjs.com/package/inquirer)
 * [Chalk](https://www.npmjs.com/package/chalk)
