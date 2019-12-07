@@ -75,7 +75,7 @@ function playGame(totalGuesses, theWord) {
 					name: 'userInput',
 					message: "What's your guess?",
 					validate: function(input) {
-						var pass = input.match(/^[a-zA-Z]/i);
+						let pass = input.match(/^[a-zA-Z]/i);
 
 						if (pass) {
 							if (input.length > 1) {
