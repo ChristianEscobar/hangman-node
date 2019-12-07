@@ -50,7 +50,7 @@ const maxGuessesAllowed = 10;
 
 function initializeGame() {
 	// Randomly select a word
-	let currentWord = new word(selectRandomCharacterName());
+	let currentWord = new Word(selectRandomCharacterName());
 
 	playGame(0, currentWord);
 }
@@ -214,7 +214,7 @@ function testWordGeneration() {
 
 	console.log(randomWord);
 
-	let currentWord = new word(randomWord);
+	let currentWord = new Word(randomWord);
 
 	currentWord.displayWord();
 }
