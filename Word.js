@@ -1,22 +1,22 @@
-const Letter = require("./Letter");
-const chalk = require("chalk");
+const Letter = require('./letter');
+const chalk = require('chalk');
 
 function Word(word) {
 	this.word = [];
 	this.lettersGuessed = [];
 	this.displayWord = function() {
 		// Displays the current word's progress
-		let wordProgress = "";
+		let wordProgress = '';
 
-		this.word.map((ltr) => {
-			wordProgress += (ltr.toString() + " ");
+		this.word.map(ltr => {
+			wordProgress += ltr.toString() + ' ';
 		});
 
-		console.log("\n\t", chalk.blueBright(wordProgress));
+		console.log('\n\t', chalk.blueBright(wordProgress));
 	};
 	this.takeGuess = function(userGuess) {
 		// Processes a users guess
-		this.word.map((ltr) => {
+		this.word.map(ltr => {
 			ltr.guess(userGuess);
 		});
 	};
@@ -28,29 +28,28 @@ function Word(word) {
 		// Checks if the word has been correctly guessed
 		let totalCorrect = 0;
 
-		this.word.map((ltr) => {
-			if(ltr.hasBeenGuessed === true) {
+		this.word.map(ltr => {
+			if (ltr.hasBeenGuessed === true) {
 				totalCorrect++;
 			}
 		});
 
-		if(totalCorrect === this.word.length) {
+		if (totalCorrect === this.word.length) {
 			return true;
 		}
 
 		return false;
-	}
-
+	};
 
 	// Store an init function in the prototype that will be used
 	// to populate the word array with Letter objects
 	Word.prototype.init = function() {
-		const charsInWord = word.split("");
+		const charsInWord = word.split('');
 
-		charsInWord.map((char) => {
-			// Handles spaces in word by adding an empty letter and setting 
+		charsInWord.map(char => {
+			// Handles spaces in word by adding an empty letter and setting
 			// that letter objects guessed value to true.
-			if(char !== " ") {
+			if (char !== ' ') {
 				this.word.push(new Letter(char));
 				this.totalForWin++;
 			} else {
@@ -59,7 +58,7 @@ function Word(word) {
 				this.word.push(thisIsAspace);
 			}
 		});
-	}
+	};
 
 	// Call the init function
 	this.init();

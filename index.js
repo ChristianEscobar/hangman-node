@@ -1,4 +1,4 @@
-const word = require('./Word');
+const Word = require('./word');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const figlet = require('figlet');
