@@ -158,26 +158,26 @@ function displayWinOrLose(isWinner) {
 }
 
 // Display ascii art title
-function displayTitle(titleText) {
-	figlet('HANGMAN', function(err, data) {
+function displayTitle() {
+	figlet('HANGMAN', function(err, word) {
 		if (err) {
 			throw err;
 		}
-		console.log(data);
+		console.log(word);
 
-		figlet('Video Game', function(err, data) {
+		figlet('Video Game', function(err, word) {
 			if (err) {
 				throw err;
 			}
 
-			console.log(data);
+			console.log(word);
 
-			figlet('Characters', function(err, data) {
+			figlet('Characters', function(err, word) {
 				if (err) {
 					throw err;
 				}
 
-				console.log(data);
+				console.log(word);
 
 				initializeGame();
 			});
