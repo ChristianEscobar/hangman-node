@@ -1,44 +1,7 @@
-const Word = require('./word');
+const CharacterName = require('./characterName');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const figlet = require('figlet');
-
-const characterNames = [
-	'Mario',
-	'Lara Croft',
-	'Samus Aran',
-	'Link',
-	'Master Chief',
-	'Kratos',
-	'Gordon Freeman',
-	'Nathan Drake',
-	'Luigi',
-	'Pikachu',
-	'Sephiroth',
-	'Glados',
-	'Jill Valentine',
-	'Marcus Fenix',
-	'Cloud Strife',
-	'Princess Zelda',
-	'Niko Bellic',
-	'Yoshi',
-	'Ganon',
-	'Subzero',
-	'Ryu Hayabusa',
-	'Fox McCloud',
-	'Toad',
-	'Donkey Kong',
-	'Sonic The Hedgehog',
-	'Crash Bandicoot',
-	'Earthworm Jim',
-	'Rayman',
-	'Diddy Kong',
-	'Bowser',
-	'Megaman',
-	'Max Payne',
-	'Pacman',
-	'Duke Nukem'
-];
 
 const maxGuessesAllowed = 10;
 
@@ -49,23 +12,27 @@ const maxGuessesAllowed = 10;
 })();
 
 function initializeGame() {
-	// Randomly select a word
-	let currentWord = new Word(selectRandomCharacterName());
+	try {
+		// Randomly select a character name
+		let currentName = new CharacterName();
 
-	playGame(0, currentWord);
+		playGame(0, currentName);
+	} catch (error) {
+		throw error;
+	}
 }
 
-function playGame(totalGuesses, theWord) {
-	theWord.displayWord();
+function playGame(totalGuesses, name) {
+	name.displayGuessProgress();
 
-	if (theWord.hasWordBeenGuessed()) {
+	if (name.hasNameBeenGuessed()) {
 		displayWinOrLose(true);
 
 		return;
 	}
 
 	if (totalGuesses < maxGuessesAllowed) {
-		displayHUD(totalGuesses, theWord);
+		displayHUD(totalGuesses, name);
 
 		inquirer
 			.prompt([
@@ -80,7 +47,7 @@ function playGame(totalGuesses, theWord) {
 						if (pass) {
 							if (input.length > 1) {
 								return 'Only single letters are allowed.';
-							} else if (theWord.letterHasBeenUsed(input) === false) {
+							} else if (name.hasNameBeenGuessed(input) === false) {
 								return true;
 							} else {
 								return (
@@ -96,24 +63,26 @@ function playGame(totalGuesses, theWord) {
 				}
 			])
 			.then(answers => {
-				totalGuesses++;
+				try {
+					totalGuesses++;
 
-				theWord.takeGuess(answers.userInput);
+					name.takeGuess(answers.userInput);
 
-				// Store this guess
-				theWord.lettersGuessed.push(answers.userInput);
+					// Store this guess
+					name.letterGuessed = answers.userInput;
 
-				// Recursive call
-				playGame(totalGuesses, theWord);
+					// Recursive call
+					playGame(totalGuesses, name);
+				} catch (error) {
+					throw error;
+				}
+			})
+			.catch(error => {
+				throw error;
 			});
 	} else {
 		displayWinOrLose(false);
 	}
-}
-
-// Randomly selects a name from the array of names
-function selectRandomCharacterName() {
-	return characterNames[Math.floor(Math.random() * characterNames.length)];
 }
 
 // Displays information to the user
@@ -209,33 +178,33 @@ function playAgainPrompt() {
 //====================================//
 // Test function section
 //====================================//
-function testWordGeneration() {
-	const randomWord = selectRandomCharacterName();
+// function testWordGeneration() {
+// 	const randomWord = selectRandomCharacterName();
 
-	console.log(randomWord);
+// 	console.log(randomWord);
 
-	let currentWord = new Word(randomWord);
+// 	let currentWord = new Word(randomWord);
 
-	currentWord.displayWord();
-}
+// 	currentWord.displayWord();
+// }
 
-function testPrintWord(printThisWord) {
-	printThisWord.word.map(ltr => {
-		console.log(ltr.letter, ' ==> ', ltr.hasBeenGuessed);
-	});
-}
+// function testPrintWord(printThisWord) {
+// 	printThisWord.word.map(ltr => {
+// 		console.log(ltr.letter, ' ==> ', ltr.hasBeenGuessed);
+// 	});
+// }
 
-function testChalk() {
-	console.log(chalk.blue('Hello World!'));
-}
+// function testChalk() {
+// 	console.log(chalk.blue('Hello World!'));
+// }
 
-function testFiglet() {
-	figlet('Hello World!!', function(err, data) {
-		if (err) {
-			console.log('Something went wrong...');
-			console.dir(err);
-			return;
-		}
-		console.log(data);
-	});
-}
+// function testFiglet() {
+// 	figlet('Hello World!!', function(err, data) {
+// 		if (err) {
+// 			console.log('Something went wrong...');
+// 			console.dir(err);
+// 			return;
+// 		}
+// 		console.log(data);
+// 	});
+// }
