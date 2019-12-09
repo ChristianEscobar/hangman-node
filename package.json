@@ -1,25 +1,28 @@
 {
-  "name": "hangman-node",
-  "version": "1.0.0",
-  "description": "A Hangman game using Node,js",
-  "main": "index.js",
-  "scripts": {
+	"name": "hangman-node",
+	"version": "1.0.0",
+	"description": "A Hangman game using Node,js",
+	"main": "index.js",
+	"scripts": {
 		"start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xtiane/hangman-node.git"
-  },
-  "author": "Christian Escobar",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xtiane/hangman-node/issues"
-  },
-  "homepage": "https://github.com/xtiane/hangman-node#readme",
-  "dependencies": {
-    "chalk": "^2.3.0",
-    "figlet": "^1.2.0",
-    "inquirer": "^5.0.1"
-  }
+		"test": "jest --coverage"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/xtiane/hangman-node.git"
+	},
+	"author": "Christian Escobar",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/xtiane/hangman-node/issues"
+	},
+	"homepage": "https://github.com/xtiane/hangman-node#readme",
+	"dependencies": {
+		"chalk": "^2.3.0",
+		"figlet": "^1.2.0",
+		"inquirer": "^5.0.1"
+	},
+	"devDependencies": {
+		"jest": "^24.9.0"
+	}
 }
