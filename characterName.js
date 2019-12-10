@@ -112,4 +112,7 @@ class CharacterName {
 	}
 }
 
-module.exports = CharacterName;
+module.exports = {
+	CharacterName,
+	getCharacterName
+};
