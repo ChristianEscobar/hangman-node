@@ -45,11 +45,11 @@ const getCharacterName = () => {
 };
 
 class CharacterName {
-	constructor() {
+	constructor(characterName = null) {
 		this.letterObjects = [];
 		this.lettersGuessed = [];
 		this.totalForWin = 0;
-		this.name = getCharacterName();
+		this.name = characterName ? characterName : getCharacterName();
 		this[initialize]();
 	}
 
@@ -81,8 +81,9 @@ class CharacterName {
 		this.letterObjects.map(ltr => {
 			guessProgress += ltr.toString() + ' ';
 		});
-
+		guessProgress = guessProgress.trim();
 		console.log('\n\t', chalk.blueBright(guessProgress));
+		return guessProgress;
 	}
 
 	takeGuess(userGuess) {
