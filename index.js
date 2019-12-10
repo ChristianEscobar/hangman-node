@@ -1,4 +1,4 @@
-const CharacterName = require('./characterName');
+const { CharacterName } = require('./characterName');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const figlet = require('figlet');
