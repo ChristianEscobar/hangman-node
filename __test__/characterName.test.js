@@ -1,4 +1,4 @@
-const CharacterName = require('../characterName');
+const { CharacterName, getCharacterName } = require('../characterName');
 
 describe('characterName.js', () => {
 	it('instantiates a new instance', () => {
@@ -24,5 +24,27 @@ describe('characterName.js', () => {
 		const character = new CharacterName('Mario');
 		let progress = character.displayGuessProgress();
 		expect(progress).toEqual('_ _ _ _ _');
+	});
+
+	it('returns false if name has not been guessed', () => {
+		const character = new CharacterName('Mario');
+		const nameGuessed = character.hasNameBeenGuessed();
+		expect(nameGuessed).toBeFalsy();
+	});
+
+	it('returns true if name has been guessed', () => {
+		const character = new CharacterName('Mario');
+		character.takeGuess('M');
+		character.takeGuess('a');
+		character.takeGuess('r');
+		character.takeGuess('i');
+		character.takeGuess('o');
+		const nameGuessed = character.hasNameBeenGuessed();
+		expect(nameGuessed).toBeTruthy();
+	});
+
+	it('returns a character name', () => {
+		const name = getCharacterName();
+		expect(name.length).toBeGreaterThan(0);
 	});
 });
