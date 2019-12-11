@@ -22,7 +22,7 @@ describe('characterName.js', () => {
 
 	it('correctly displays guess progress', () => {
 		const character = new CharacterName('Mario');
-		let progress = character.displayGuessProgress();
+		let progress = character.getGuessProgress();
 		expect(progress).toEqual('_ _ _ _ _');
 	});
 
