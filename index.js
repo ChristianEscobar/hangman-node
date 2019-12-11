@@ -23,7 +23,7 @@ function initializeGame() {
 }
 
 function playGame(totalGuesses, name) {
-	name.displayGuessProgress();
+	console.log('\n\t', chalk.blueBright(name.getGuessProgress()));
 
 	if (name.hasNameBeenGuessed()) {
 		displayWinOrLose(true);
@@ -86,14 +86,14 @@ function playGame(totalGuesses, name) {
 }
 
 // Displays information to the user
-function displayHUD(totalGuesses, theWord) {
+function displayHUD(totalGuesses, theCharacterName) {
 	console.log(
 		chalk.whiteBright('\nThis is guess #'),
 		chalk.yellowBright(totalGuesses + 1)
 	);
 	console.log(
 		chalk.whiteBright('Current guesses: '),
-		chalk.yellowBright(theWord.lettersGuessed)
+		chalk.yellowBright(theCharacterName.lettersGuessed)
 	);
 	console.log(
 		chalk.whiteBright('Number of Guesses Remaining: '),
