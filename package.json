@@ -18,7 +18,9 @@
 	},
 	"homepage": "https://github.com/xtiane/hangman-node#readme",
 	"dependencies": {
+		"aws-sdk": "^2.587.0",
 		"chalk": "^2.3.0",
+		"dotenv": "^8.2.0",
 		"figlet": "^1.2.0",
 		"inquirer": "^5.0.1"
 	},
