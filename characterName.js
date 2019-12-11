@@ -82,7 +82,6 @@ class CharacterName {
 			guessProgress += ltr.toString() + ' ';
 		});
 		guessProgress = guessProgress.trim();
-		console.log('\n\t', chalk.blueBright(guessProgress));
 		return guessProgress;
 	}
 
