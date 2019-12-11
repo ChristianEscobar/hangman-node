@@ -1,4 +1,3 @@
-const chalk = require('chalk');
 const Letter = require('./letter');
 
 const characterNames = [
@@ -74,13 +73,14 @@ class CharacterName {
 		this.lettersGuessed.push(userGuess);
 	}
 
-	displayGuessProgress() {
+	getGuessProgress() {
 		// Display progress
 		let guessProgress = '';
 
 		this.letterObjects.map(ltr => {
 			guessProgress += ltr.toString() + ' ';
 		});
+
 		guessProgress = guessProgress.trim();
 		return guessProgress;
 	}
