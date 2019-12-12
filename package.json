@@ -25,6 +25,7 @@
 		"inquirer": "^5.0.1"
 	},
 	"devDependencies": {
+		"aws-sdk-mock": "^4.5.0",
 		"jest": "^24.9.0"
 	}
 }
