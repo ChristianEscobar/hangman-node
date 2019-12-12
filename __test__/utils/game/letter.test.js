@@ -1,4 +1,4 @@
-const Letter = require('../utils/game/letter');
+const Letter = require('../../../utils/game/letter');
 
 describe('letter.js', () => {
 	it('creates a new letter object', () => {

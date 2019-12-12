@@ -1,7 +1,7 @@
 const {
 	CharacterName,
 	getCharacterName
-} = require('../utils/game/characterName');
+} = require('../../../utils/game/characterName');
 
 describe('characterName.js', () => {
 	it('instantiates a new instance', () => {
