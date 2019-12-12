@@ -1,4 +1,5 @@
 const { CharacterName } = require('./utils/game/characterName');
+const { getGameData } = require('./utils/aws/data');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const figlet = require('figlet');

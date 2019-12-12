@@ -16,8 +16,8 @@ const getGameData = async () => {
 		};
 		const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 		const s3response = await s3.getObject(params).promise();
-		console.log(s3response);
-		// return JSON.parse(s3response.Body.toString()));
+
+		return s3response.Body;
 	} catch (error) {
 		if (error.code === 'NoSuchKey') {
 			return null;
