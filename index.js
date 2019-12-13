@@ -175,37 +175,3 @@ function playAgainPrompt() {
 			}
 		});
 }
-
-//====================================//
-// Test function section
-//====================================//
-// function testWordGeneration() {
-// 	const randomWord = selectRandomCharacterName();
-
-// 	console.log(randomWord);
-
-// 	let currentWord = new Word(randomWord);
-
-// 	currentWord.displayWord();
-// }
-
-// function testPrintWord(printThisWord) {
-// 	printThisWord.word.map(ltr => {
-// 		console.log(ltr.letter, ' ==> ', ltr.hasBeenGuessed);
-// 	});
-// }
-
-// function testChalk() {
-// 	console.log(chalk.blue('Hello World!'));
-// }
-
-// function testFiglet() {
-// 	figlet('Hello World!!', function(err, data) {
-// 		if (err) {
-// 			console.log('Something went wrong...');
-// 			console.dir(err);
-// 			return;
-// 		}
-// 		console.log(data);
-// 	});
-// }
