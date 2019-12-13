@@ -16,7 +16,6 @@ const getGameData = async () => {
 		};
 		const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 		const s3response = await s3.getObject(params).promise();
-
 		return s3response.Body;
 	} catch (error) {
 		if (error.code === 'NoSuchKey') {
@@ -26,4 +25,20 @@ const getGameData = async () => {
 	}
 };
 
-module.exports = { getGameData };
+const writeGameData = async dataObj => {
+	const params = {
+		Bucket: bucket,
+		Key: key,
+		Body: JSON.stringify(dataObj)
+	};
+
+	try {
+		const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
+		const s3response = await s3.putObject(params).promise();
+		return s3response;
+	} catch (error) {
+		throw new Error(`Error writing game data | ${error}`);
+	}
+};
+
+module.exports = { getGameData, writeGameData };
